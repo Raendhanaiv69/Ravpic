@@ -1,20 +1,35 @@
 {
   "version": 2,
-  "framework": null,
   "outputDirectory": "public",
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.7.2"
-    }
-  },
+  "builds": [
+    { "src": "api/index.php", "use": "vercel-php@0.7.4" }
+  ],
   "routes": [
     {
-      "src": "/build/(.*)",
-      "dest": "/build/$1"
+      "src": "/(.*\\.(?:png|jpg|jpeg|gif|svg|css|js|ico|webp))",
+      "dest": "/public/$1"
     },
     {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
-  ]
+  ],
+  "env": {
+    "APP_NAME": "portofolio",
+    "APP_ENV": "production",
+    "APP_DEBUG": "true",
+    "APP_URL": "https://ravpic-photo.vercel.app",
+    "VERCEL": "true",
+    "APP_STORAGE": "/tmp",
+    "APP_CONFIG_CACHE": "/tmp/config.php",
+    "APP_EVENTS_CACHE": "/tmp/events.php",
+    "APP_PACKAGES_CACHE": "/tmp/packages.php",
+    "APP_ROUTES_CACHE": "/tmp/routes.php",
+    "APP_SERVICES_CACHE": "/tmp/services.php",
+    "VIEW_COMPILED_PATH": "/tmp",
+    "CACHE_DRIVER": "array",
+    "LOG_CHANNEL": "stderr",
+    "QUEUE_CONNECTION": "sync",
+    "SESSION_DRIVER": "cookie"
+  }
 }

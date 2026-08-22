@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photobooth Aquarium 1:1 Square</title>
+    <title>Photobooth Doodle 1:1 Square</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +48,7 @@
             border-radius: 22px;
             overflow: hidden;
             background-color: #1e1b1b;
+            touch-action: none;
         }
 
         .camera-viewport-square video {
@@ -64,8 +65,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
             z-index: 20;
+            cursor: crosshair;
         }
 
         /* Container Hasil Normal Laptop */
@@ -125,7 +126,7 @@
                 <a href="{{ route('templates.index') }}" class="w-8 h-8 rounded-xl bg-white border border-pink-200 flex items-center justify-center text-xs hover:bg-pink-50 transition text-[#8C3A49] font-bold">
                     ←
                 </a>
-                <span class="font-bold font-brand text-sm text-[#8C3A49]">Photobooth Studio</span>
+                <span class="font-bold font-brand text-sm text-[#8C3A49]">Photobooth Doodle</span>
             </div>
 
             <div class="flex items-center gap-2">
@@ -134,7 +135,7 @@
                     <span>📷</span> Flip
                 </button>
                 <span id="sessionStatus" class="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-pink-50 text-[#C25E71] border border-pink-200/60">
-                    ⏹️ Square 1:1 Strip
+                    🎨 photoboothDoodle 1:1
                 </span>
             </div>
         </div>
@@ -143,10 +144,10 @@
     <!-- Main Workspace -->
     <main class="flex-1 max-w-6xl mx-auto w-full px-4 py-6 flex flex-col md:flex-row items-center md:items-start justify-center gap-6">
 
-        <!-- KIRI: Live Camera Viewport -->
+        <!-- KIRI: Live Camera Viewport + Doodle Canvas -->
         <div class="camera-card-desktop">
             
-            <div class="w-full flex justify-between items-center mb-3 px-1">
+            <div class="w-full flex justify-between items-center mb-2 px-1">
                 <div class="flex items-center gap-1.5">
                     <span class="text-xs font-bold text-[#8C3A49]">⏱️ Timer:</span>
                     <button type="button" onclick="setTimer(3)" id="timer3Btn" class="px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#FFAAA6] text-white border border-[#FFAAA6] transition-all">
@@ -164,10 +165,48 @@
                 </div>
             </div>
 
-            <!-- Area Kamera Square -->
+            <!-- Toolbar Coret-coret (Doodle Tools) -->
+            <div class="w-full flex items-center justify-between mb-3 px-3 py-1.5 bg-pink-50/70 border border-pink-200/70 rounded-2xl gap-2 flex-wrap">
+                <!-- Color Palette -->
+                <div class="flex items-center gap-1.5">
+                    <span class="text-[11px] font-bold text-[#8C3A49] mr-0.5">🖍️</span>
+                    <button type="button" onclick="setBrushColor('#FF2E93')" class="color-pick-btn w-5 h-5 rounded-full bg-[#FF2E93] border-2 border-white ring-2 ring-pink-400 scale-110 shadow-sm transition-all" data-color="#FF2E93" title="Hot Pink"></button>
+                    <button type="button" onclick="setBrushColor('#FFE600')" class="color-pick-btn w-5 h-5 rounded-full bg-[#FFE600] border-2 border-white opacity-60 hover:opacity-100 shadow-sm transition-all" data-color="#FFE600" title="Neon Yellow"></button>
+                    <button type="button" onclick="setBrushColor('#00E5FF')" class="color-pick-btn w-5 h-5 rounded-full bg-[#00E5FF] border-2 border-white opacity-60 hover:opacity-100 shadow-sm transition-all" data-color="#00E5FF" title="Cyan Blue"></button>
+                    <button type="button" onclick="setBrushColor('#FF6B6B')" class="color-pick-btn w-5 h-5 rounded-full bg-[#FF6B6B] border-2 border-white opacity-60 hover:opacity-100 shadow-sm transition-all" data-color="#FF6B6B" title="Coral"></button>
+                    <button type="button" onclick="setBrushColor('#FFFFFF')" class="color-pick-btn w-5 h-5 rounded-full bg-[#FFFFFF] border-2 border-pink-200 opacity-60 hover:opacity-100 shadow-sm transition-all" data-color="#FFFFFF" title="White Chalk"></button>
+                </div>
+
+                <!-- Brush Size & Mode -->
+                <div class="flex items-center gap-1.5">
+                    <!-- Size Selector -->
+                    <button type="button" onclick="setBrushSize(3)" id="sizeBtn-3" class="w-6 h-6 rounded-lg bg-white border border-pink-200 flex items-center justify-center text-[10px] font-bold text-[#8C3A49] hover:bg-pink-100">
+                        •
+                    </button>
+                    <button type="button" onclick="setBrushSize(6)" id="sizeBtn-6" class="w-6 h-6 rounded-lg bg-[#FFAAA6] text-white border border-[#FFAAA6] flex items-center justify-center text-xs font-bold">
+                        ●
+                    </button>
+                    <button type="button" onclick="setBrushSize(12)" id="sizeBtn-12" class="w-6 h-6 rounded-lg bg-white border border-pink-200 flex items-center justify-center text-sm font-bold text-[#8C3A49] hover:bg-pink-100">
+                        ⬤
+                    </button>
+
+                    <!-- Eraser / Clear / Undo -->
+                    <button type="button" onclick="toggleEraser()" id="eraserBtn" title="Penghapus" class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition">
+                        🧹 Hapus
+                    </button>
+                    <button type="button" onclick="undoDoodle()" title="Undo coretan terakhir" class="w-6 h-6 rounded-lg bg-white text-[#8C3A49] border border-pink-200 flex items-center justify-center text-xs font-bold hover:bg-pink-100 transition">
+                        ↩️
+                    </button>
+                    <button type="button" onclick="clearDoodleCanvas()" title="Hapus semua coretan" class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-rose-100 text-rose-700 border border-rose-200 hover:bg-rose-200 transition">
+                        Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Area Kamera Square + Doodle Canvas -->
             <div class="camera-viewport-square">
                 <video id="webcam" autoplay playsinline muted></video>
-                <canvas id="fishCanvas"></canvas>
+                <canvas id="doodleCanvas"></canvas>
 
                 <!-- Screen Flash Overlay -->
                 <div id="flashOverlay" class="absolute inset-0 pointer-events-none z-50 opacity-0"></div>
@@ -185,7 +224,7 @@
                 <!-- Watermark -->
                 <div class="absolute bottom-2.5 left-0 right-0 z-20 flex justify-center pointer-events-none">
                     <span class="text-white/95 text-[9px] font-brand tracking-widest uppercase bg-black/35 backdrop-blur-sm px-3 py-0.5 rounded-full">
-                        🫧 AQUARIUM BOOTH • SQUARE 🫧
+                        ✨ PHOTOBOOTH DOODLE ✨
                     </span>
                 </div>
             </div>
@@ -229,13 +268,13 @@
                 <span class="text-[10px] font-bold text-[#7A3644] pl-1">Ulang Pose:</span>
                 <div class="flex gap-1">
                     <button type="button" onclick="retakeSinglePose(0)" id="retakeBtn0" disabled class="px-2 py-1 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        1 ⟳
+                        #1 ⟳
                     </button>
                     <button type="button" onclick="retakeSinglePose(1)" id="retakeBtn1" disabled class="px-2 py-1 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        2 ⟳
+                        #2 ⟳
                     </button>
                     <button type="button" onclick="retakeSinglePose(2)" id="retakeBtn2" disabled class="px-2 py-1 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        3 ⟳
+                        #3 ⟳
                     </button>
                 </div>
             </div>
@@ -246,7 +285,7 @@
                     <span>💾</span> Unduh Strip Foto (PNG)
                 </button>
                 <button id="resetAllBtn" type="button" onclick="resetBooth()" class="w-full py-1.5 rounded-xl bg-pink-50 text-[#8C3A49] font-bold text-xs hover:bg-pink-100 transition-all">
-                    Reset Semua Foto 🔄
+                    Reset Semua Foto ⟳
                 </button>
             </div>
         </div>
@@ -256,8 +295,8 @@
     <!-- Script Engine -->
     <script>
         const video = document.getElementById('webcam');
-        const canvas = document.getElementById('fishCanvas');
-        const ctx = canvas.getContext('2d');
+        const doodleCanvas = document.getElementById('doodleCanvas');
+        const dCtx = doodleCanvas.getContext('2d');
 
         const flashOverlay = document.getElementById('flashOverlay');
         const countdownBox = document.getElementById('countdownBox');
@@ -271,6 +310,7 @@
         const timer3Btn = document.getElementById('timer3Btn');
         const timer5Btn = document.getElementById('timer5Btn');
         const torchStatusText = document.getElementById('torchStatusText');
+        const eraserBtn = document.getElementById('eraserBtn');
 
         let selectedTimerSeconds = 3;
         let capturedShots = [null, null, null];
@@ -279,7 +319,7 @@
         let currentMediaStream = null;
         let torchActivePreference = true;
 
-        // --- Palet Tema Warna Frame Pastel ---
+        // --- PALET TEMA WARNA FRAME PASTEL ---
         let selectedFrameColor = 'pink';
         const frameThemes = {
             pink: {
@@ -347,26 +387,130 @@
             renderPhotostripLive();
         }
 
-        function setTimer(sec) {
-            if (isSessionRunning) return;
-            selectedTimerSeconds = sec;
-            if (sec === 3) {
-                timer3Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#FFAAA6] text-white border border-[#FFAAA6] transition-all";
-                timer5Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-pink-50 text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition-all";
-            } else {
-                timer5Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#FFAAA6] text-white border border-[#FFAAA6] transition-all";
-                timer3Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-pink-50 text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition-all";
+        // --- DOODLE ENGINE ---
+        let isDrawing = false;
+        let brushColor = '#FF2E93';
+        let brushSize = 6;
+        let isEraserMode = false;
+        let doodleHistory = [];
+
+        function saveDoodleState() {
+            if (doodleHistory.length >= 10) doodleHistory.shift();
+            doodleHistory.push(dCtx.getImageData(0, 0, doodleCanvas.width, doodleCanvas.height));
+        }
+
+        function undoDoodle() {
+            if (doodleHistory.length > 0) {
+                const prevState = doodleHistory.pop();
+                dCtx.putImageData(prevState, 0, 0);
             }
         }
 
-        function toggleTorchPreference() {
-            torchActivePreference = !torchActivePreference;
-            torchStatusText.innerText = torchActivePreference ? "Auto" : "Off";
+        function setBrushColor(color) {
+            isEraserMode = false;
+            brushColor = color;
+            eraserBtn.className = "px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition";
+
+            document.querySelectorAll('.color-pick-btn').forEach(btn => {
+                if (btn.dataset.color === color) {
+                    btn.className = `color-pick-btn w-5 h-5 rounded-full border-2 border-white ring-2 ring-pink-400 scale-110 shadow-sm transition-all`;
+                    btn.style.backgroundColor = color;
+                } else {
+                    btn.className = `color-pick-btn w-5 h-5 rounded-full border-2 border-white opacity-60 hover:opacity-100 shadow-sm transition-all`;
+                    btn.style.backgroundColor = btn.dataset.color;
+                }
+            });
         }
 
-        // Web Audio Synth
+        function setBrushSize(size) {
+            brushSize = size;
+            [3, 6, 12].forEach(s => {
+                const btn = document.getElementById(`sizeBtn-${s}`);
+                if (s === size) {
+                    btn.className = "w-6 h-6 rounded-lg bg-[#FFAAA6] text-white border border-[#FFAAA6] flex items-center justify-center font-bold";
+                } else {
+                    btn.className = "w-6 h-6 rounded-lg bg-white border border-pink-200 flex items-center justify-center font-bold text-[#8C3A49] hover:bg-pink-100";
+                }
+            });
+        }
+
+        function toggleEraser() {
+            isEraserMode = !isEraserMode;
+            if (isEraserMode) {
+                eraserBtn.className = "px-2 py-0.5 rounded-lg text-[10px] font-bold bg-pink-500 text-white border border-pink-500 transition";
+            } else {
+                eraserBtn.className = "px-2 py-0.5 rounded-lg text-[10px] font-bold bg-white text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition";
+            }
+        }
+
+        function clearDoodleCanvas() {
+            saveDoodleState();
+            dCtx.clearRect(0, 0, doodleCanvas.width, doodleCanvas.height);
+        }
+
+        function getCanvasCoordinates(e) {
+            const rect = doodleCanvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            
+            const scaleX = doodleCanvas.width / rect.width;
+            const scaleY = doodleCanvas.height / rect.height;
+
+            return {
+                x: (clientX - rect.left) * scaleX,
+                y: (clientY - rect.top) * scaleY
+            };
+        }
+
+        function startDoodle(e) {
+            if (isSessionRunning) return;
+            e.preventDefault();
+            saveDoodleState();
+            isDrawing = true;
+            const pos = getCanvasCoordinates(e);
+
+            dCtx.beginPath();
+            dCtx.moveTo(pos.x, pos.y);
+            dCtx.lineCap = 'round';
+            dCtx.lineJoin = 'round';
+            dCtx.lineWidth = brushSize;
+
+            if (isEraserMode) {
+                dCtx.globalCompositeOperation = 'destination-out';
+            } else {
+                dCtx.globalCompositeOperation = 'source-over';
+                dCtx.strokeStyle = brushColor;
+                dCtx.shadowColor = brushColor;
+                dCtx.shadowBlur = 4;
+            }
+        }
+
+        function moveDoodle(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const pos = getCanvasCoordinates(e);
+            dCtx.lineTo(pos.x, pos.y);
+            dCtx.stroke();
+        }
+
+        function stopDoodle(e) {
+            if (!isDrawing) return;
+            isDrawing = false;
+            dCtx.closePath();
+            dCtx.shadowBlur = 0;
+        }
+
+        // Mouse & Touch listeners for drawing
+        doodleCanvas.addEventListener('mousedown', startDoodle);
+        window.addEventListener('mousemove', moveDoodle);
+        window.addEventListener('mouseup', stopDoodle);
+
+        doodleCanvas.addEventListener('touchstart', startDoodle, { passive: false });
+        window.addEventListener('touchmove', moveDoodle, { passive: false });
+        window.addEventListener('touchend', stopDoodle);
+
+        // --- AUDIO SYNTH ENGINE ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        
         function playBeepSound() {
             try {
                 if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -398,6 +542,23 @@
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.09);
             } catch (e) {}
+        }
+
+        function setTimer(sec) {
+            if (isSessionRunning) return;
+            selectedTimerSeconds = sec;
+            if (sec === 3) {
+                timer3Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#FFAAA6] text-white border border-[#FFAAA6] transition-all";
+                timer5Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-pink-50 text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition-all";
+            } else {
+                timer5Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-[#FFAAA6] text-white border border-[#FFAAA6] transition-all";
+                timer3Btn.className = "px-2.5 py-0.5 rounded-lg text-xs font-bold bg-pink-50 text-[#8C3A49] border border-pink-200 hover:bg-pink-100 transition-all";
+            }
+        }
+
+        function toggleTorchPreference() {
+            torchActivePreference = !torchActivePreference;
+            torchStatusText.innerText = torchActivePreference ? "Auto" : "Off";
         }
 
         async function startCamera() {
@@ -442,199 +603,98 @@
         }
 
         function resizeCanvas() {
-            if (canvas.parentElement) {
-                canvas.width = canvas.parentElement.clientWidth || 460;
-                canvas.height = canvas.parentElement.clientHeight || 460;
+            if (doodleCanvas.parentElement) {
+                const w = doodleCanvas.parentElement.clientWidth || 460;
+                const h = doodleCanvas.parentElement.clientHeight || 460;
+                
+                // Simpan gambar jika sudah ada coretan sebelum resize
+                const temp = dCtx.getImageData(0, 0, doodleCanvas.width, doodleCanvas.height);
+                doodleCanvas.width = w;
+                doodleCanvas.height = h;
+                try {
+                    dCtx.putImageData(temp, 0, 0);
+                } catch(e) {}
             }
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        class ColorfulGoldfish {
-            constructor() { this.reset(true); }
+        function runCountdown(seconds) {
+            return new Promise(resolve => {
+                let current = seconds;
+                updateCountdownDisplay(current);
+                playBeepSound();
 
-            reset(initial = false) {
-                const cw = canvas.width || 460;
-                const ch = canvas.height || 460;
-                this.x = initial ? Math.random() * cw : (Math.random() > 0.5 ? -120 : cw + 120);
-                this.y = Math.random() * (ch - 90) + 45;
-                this.speed = Math.random() * 0.9 + 0.6;
-                this.direction = this.x < cw / 2 ? 1 : -1;
-                this.colorType = Math.floor(Math.random() * 5);
-                
-                // Variasi ukuran: 60% kecil, 25% sedang, 15% besar & glowing
-                const sizeRoll = Math.random();
-                if (sizeRoll < 0.60) {
-                    this.isNearLens = false;
-                    this.scale = Math.random() * 0.15 + 0.22; // Mini / Kecil
-                } else if (sizeRoll < 0.85) {
-                    this.isNearLens = false;
-                    this.scale = Math.random() * 0.2 + 0.45;  // Sedang
-                } else {
-                    this.isNearLens = true;
-                    this.scale = Math.random() * 0.3 + 0.8;   // Besar
+                const interval = setInterval(() => {
+                    current--;
+                    if (current > 0) {
+                        updateCountdownDisplay(current);
+                        playBeepSound();
+                    } else {
+                        clearInterval(interval);
+                        resolve();
+                    }
+                }, 1000);
+            });
+        }
+
+        function updateCountdownDisplay(num) {
+            countdownNumber.innerText = num;
+            countdownNumber.classList.remove('count-animate');
+            void countdownNumber.offsetWidth;
+            countdownNumber.classList.add('count-animate');
+        }
+
+        function triggerFlash() {
+            flashOverlay.classList.remove('flash-shutter');
+            void flashOverlay.offsetWidth;
+            flashOverlay.classList.add('flash-shutter');
+        }
+
+        function capturePoseIndex(index) {
+            const size = Math.min(doodleCanvas.width, doodleCanvas.height) || 460;
+
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = size;
+            tempCanvas.height = size;
+            const tCtx = tempCanvas.getContext('2d');
+
+            if (video.videoWidth > 0) {
+                const vMin = Math.min(video.videoWidth, video.videoHeight);
+                const sx = (video.videoWidth - vMin) / 2;
+                const sy = (video.videoHeight - vMin) / 2;
+
+                tCtx.save();
+                if (currentFacingMode === 'user') {
+                    tCtx.translate(size, 0);
+                    tCtx.scale(-1, 1);
                 }
-
-                this.tailAngle = Math.random() * Math.PI;
-                this.tailSpeed = Math.random() * 0.08 + 0.06;
-                this.finFlutter = 0;
+                tCtx.drawImage(video, sx, sy, vMin, vMin, 0, 0, size, size);
+                tCtx.restore();
+            } else {
+                tCtx.fillStyle = '#1e1b1b';
+                tCtx.fillRect(0, 0, size, size);
             }
 
-            update() {
-                const cw = canvas.width || 460;
-                this.x += this.speed * this.direction;
-                this.tailAngle += this.tailSpeed;
-                this.finFlutter += 0.12;
-                this.y += Math.sin(this.tailAngle * 0.6) * 0.35;
+            // Tempelkan coretan doodle ke atas foto
+            tCtx.drawImage(doodleCanvas, 0, 0, size, size);
+            capturedShots[index] = tempCanvas;
 
-                if (this.direction === 1 && this.x > cw + 150) this.reset();
-                else if (this.direction === -1 && this.x < -150) this.reset();
-            }
+            document.getElementById(`retakeBtn${index}`).disabled = false;
+            renderPhotostripLive();
+        }
 
-            draw(targetCtx = ctx) {
-                targetCtx.save();
-                targetCtx.translate(this.x, this.y);
-                targetCtx.scale(this.direction * this.scale, this.scale);
+        function checkSessionCompletion() {
+            const isAllCaptured = capturedShots.every(shot => shot !== null);
+            if (isAllCaptured) {
+                stripStatusBadge.className = "text-[10px] text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full font-bold";
+                stripStatusBadge.innerText = "Lengkap ✅";
 
-                let cPrimary, cSecondary, cHighlight, glowColor;
-                if (this.colorType === 0) {
-                    cHighlight = '#FFE17D'; cPrimary = '#FF8A1C'; cSecondary = '#E84508'; glowColor = 'rgba(255, 140, 0, 0.4)';
-                } else if (this.colorType === 1) {
-                    cHighlight = '#FFFFFF'; cPrimary = '#FFF0EE'; cSecondary = '#E63946'; glowColor = 'rgba(230, 57, 70, 0.4)';
-                } else if (this.colorType === 2) {
-                    cHighlight = '#FCE4EC'; cPrimary = '#B39DDB'; cSecondary = '#FF7043'; glowColor = 'rgba(179, 157, 219, 0.4)';
-                } else if (this.colorType === 3) {
-                    cHighlight = '#78909C'; cPrimary = '#37474F'; cSecondary = '#212121'; glowColor = 'rgba(55, 71, 79, 0.4)';
-                } else {
-                    cHighlight = '#FFFF8D'; cPrimary = '#FFEE58'; cSecondary = '#FBC02D'; glowColor = 'rgba(255, 235, 59, 0.4)';
-                }
-
-                if (this.isNearLens) {
-                    targetCtx.save();
-                    const glowGrad = targetCtx.createRadialGradient(0, 0, 10, 0, 0, 60);
-                    glowGrad.addColorStop(0, glowColor);
-                    glowGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-                    targetCtx.fillStyle = glowGrad;
-                    targetCtx.beginPath();
-                    targetCtx.arc(0, 0, 60, 0, Math.PI * 2);
-                    targetCtx.fill();
-                    targetCtx.restore();
-                }
-
-                // Dorsal
-                targetCtx.save();
-                targetCtx.beginPath();
-                targetCtx.moveTo(-10, -20);
-                targetCtx.quadraticCurveTo(5, -50, 24, -22);
-                targetCtx.quadraticCurveTo(8, -24, -10, -20);
-                const dorsalGrad = targetCtx.createLinearGradient(0, -50, 0, -20);
-                dorsalGrad.addColorStop(0, 'rgba(255, 255, 255, 0.6)');
-                dorsalGrad.addColorStop(0.5, cPrimary);
-                dorsalGrad.addColorStop(1, cSecondary);
-                targetCtx.fillStyle = dorsalGrad;
-                targetCtx.fill();
-                targetCtx.restore();
-
-                // Tail
-                targetCtx.save();
-                targetCtx.translate(-24, 0);
-                targetCtx.rotate(Math.sin(this.tailAngle) * 0.28);
-                targetCtx.beginPath();
-                targetCtx.moveTo(0, -2);
-                targetCtx.quadraticCurveTo(-30, -38, -65, -30);
-                targetCtx.quadraticCurveTo(-48, -7, -8, 2);
-                const tailGrad = targetCtx.createLinearGradient(-65, 0, 0, 0);
-                tailGrad.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
-                tailGrad.addColorStop(0.4, cPrimary);
-                tailGrad.addColorStop(1, cSecondary);
-                targetCtx.fillStyle = tailGrad;
-                targetCtx.fill();
-
-                targetCtx.beginPath();
-                targetCtx.moveTo(0, 2);
-                targetCtx.quadraticCurveTo(-35, 30, -70, 18);
-                targetCtx.quadraticCurveTo(-45, 0, -8, 0);
-                targetCtx.fillStyle = tailGrad;
-                targetCtx.fill();
-                targetCtx.restore();
-
-                // Body
-                targetCtx.save();
-                targetCtx.beginPath();
-                targetCtx.ellipse(4, 0, 32, 23, 0.05, 0, Math.PI * 2);
-                const bodyGrad = targetCtx.createRadialGradient(6, -7, 4, 4, 0, 32);
-                bodyGrad.addColorStop(0, cHighlight);
-                bodyGrad.addColorStop(0.35, cPrimary);
-                bodyGrad.addColorStop(0.8, cSecondary);
-                bodyGrad.addColorStop(1, '#1A1A1A');
-                targetCtx.fillStyle = bodyGrad;
-                targetCtx.shadowColor = glowColor;
-                targetCtx.shadowBlur = 8;
-                targetCtx.fill();
-                targetCtx.restore();
-
-                // Eye
-                targetCtx.beginPath();
-                targetCtx.arc(22, -4, 5.5, 0, Math.PI * 2);
-                targetCtx.fillStyle = '#FFD54F';
-                targetCtx.fill();
-
-                targetCtx.beginPath();
-                targetCtx.arc(22, -4, 3.5, 0, Math.PI * 2);
-                targetCtx.fillStyle = '#111111';
-                targetCtx.fill();
-
-                targetCtx.beginPath();
-                targetCtx.arc(20.5, -5.5, 1.3, 0, Math.PI * 2);
-                targetCtx.fillStyle = '#FFFFFF';
-                targetCtx.fill();
-
-                targetCtx.restore();
+                downloadBtn.disabled = false;
+                downloadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
             }
         }
 
-        class Bubble {
-            constructor() { this.reset(); }
-            reset() {
-                const cw = canvas.width || 460;
-                const ch = canvas.height || 460;
-                this.x = Math.random() * cw;
-                this.y = ch + 15;
-                this.speed = Math.random() * 1.1 + 0.6;
-                this.radius = Math.random() * 2.5 + 1;
-                this.alpha = Math.random() * 0.5 + 0.2;
-            }
-            update() {
-                this.y -= this.speed;
-                this.x += Math.sin(this.y * 0.04) * 0.35;
-                if (this.y < -15) this.reset();
-            }
-            draw(targetCtx = ctx) {
-                targetCtx.save();
-                targetCtx.beginPath();
-                targetCtx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                targetCtx.strokeStyle = `rgba(255, 255, 255, ${this.alpha})`;
-                targetCtx.lineWidth = 1;
-                targetCtx.stroke();
-                targetCtx.restore();
-            }
-        }
-
-        // 12 ekor ikan dan 18 butir gelembung
-        const fishes = Array.from({ length: 12 }, () => new ColorfulGoldfish());
-        const bubbles = Array.from({ length: 18 }, () => new Bubble());
-
-        function animate() {
-            if (canvas.width > 0 && canvas.height > 0) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                bubbles.forEach(b => { b.update(); b.draw(); });
-                fishes.forEach(f => { f.update(); f.draw(); });
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        // --- Photo Workflow ---
         async function startPhotoSession() {
             if (isSessionRunning) return;
             isSessionRunning = true;
@@ -701,82 +761,6 @@
             checkSessionCompletion();
         }
 
-        function runCountdown(seconds) {
-            return new Promise(resolve => {
-                let current = seconds;
-                updateCountdownDisplay(current);
-                playBeepSound();
-
-                const interval = setInterval(() => {
-                    current--;
-                    if (current > 0) {
-                        updateCountdownDisplay(current);
-                        playBeepSound();
-                    } else {
-                        clearInterval(interval);
-                        resolve();
-                    }
-                }, 1000);
-            });
-        }
-
-        function updateCountdownDisplay(num) {
-            countdownNumber.innerText = num;
-            countdownNumber.classList.remove('count-animate');
-            void countdownNumber.offsetWidth;
-            countdownNumber.classList.add('count-animate');
-        }
-
-        function triggerFlash() {
-            flashOverlay.classList.remove('flash-shutter');
-            void flashOverlay.offsetWidth;
-            flashOverlay.classList.add('flash-shutter');
-        }
-
-        function capturePoseIndex(index) {
-            const size = Math.min(canvas.width, canvas.height) || 460;
-
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = size;
-            tempCanvas.height = size;
-            const tCtx = tempCanvas.getContext('2d');
-
-            if (video.videoWidth > 0) {
-                const vMin = Math.min(video.videoWidth, video.videoHeight);
-                const sx = (video.videoWidth - vMin) / 2;
-                const sy = (video.videoHeight - vMin) / 2;
-
-                tCtx.save();
-                if (currentFacingMode === 'user') {
-                    tCtx.translate(size, 0);
-                    tCtx.scale(-1, 1);
-                }
-                tCtx.drawImage(video, sx, sy, vMin, vMin, 0, 0, size, size);
-                tCtx.restore();
-            } else {
-                tCtx.fillStyle = '#1e1b1b';
-                tCtx.fillRect(0, 0, size, size);
-            }
-
-            tCtx.drawImage(canvas, 0, 0, size, size);
-            capturedShots[index] = tempCanvas;
-
-            // Aktifkan tombol ulang per foto
-            document.getElementById(`retakeBtn${index}`).disabled = false;
-            renderPhotostripLive();
-        }
-
-        function checkSessionCompletion() {
-            const isAllCaptured = capturedShots.every(shot => shot !== null);
-            if (isAllCaptured) {
-                stripStatusBadge.className = "text-[10px] text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full font-bold";
-                stripStatusBadge.innerText = "Lengkap ✅";
-
-                downloadBtn.disabled = false;
-                downloadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        }
-
         function renderPhotostripLive() {
             const theme = frameThemes[selectedFrameColor] || frameThemes.pink;
             const stripW = 400;
@@ -785,7 +769,6 @@
             stripCanvas.height = stripH;
             const sCtx = stripCanvas.getContext('2d');
 
-            // Gradient Latar Belakang Sesuai Tema
             const bgGrad = sCtx.createLinearGradient(0, 0, stripW, stripH);
             bgGrad.addColorStop(0, theme.grad[0]);
             bgGrad.addColorStop(0.5, theme.grad[1]);
@@ -793,7 +776,6 @@
             sCtx.fillStyle = bgGrad;
             sCtx.fillRect(0, 0, stripW, stripH);
 
-            // Border Frame
             sCtx.strokeStyle = theme.border;
             sCtx.lineWidth = 6;
             sCtx.strokeRect(10, 10, stripW - 20, stripH - 20);
@@ -831,13 +813,11 @@
                 }
             }
 
-            // Watermark Judul
             sCtx.fillStyle = theme.textPrimary;
             sCtx.font = 'bold 15px "Quicksand", sans-serif';
             sCtx.textAlign = 'center';
-            sCtx.fillText('🫧 AQUARIUM BOOTH 🫧', stripW / 2, stripH - 55);
+            sCtx.fillText('🎨 PHOTOBOOTH DOODLE 🎨', stripW / 2, stripH - 55);
 
-            // Tanggal
             const today = new Date();
             const dateStr = today.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' });
             sCtx.fillStyle = theme.textSecondary;
@@ -848,7 +828,7 @@
         function downloadStrip() {
             if (!capturedShots.every(s => s !== null)) return;
             const link = document.createElement('a');
-            link.download = `photobooth-${selectedFrameColor}-aquarium-${Date.now()}.png`;
+            link.download = `photoboothDoodle-${selectedFrameColor}-${Date.now()}.png`;
             link.href = stripCanvas.toDataURL('image/png');
             link.click();
         }

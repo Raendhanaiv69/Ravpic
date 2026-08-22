@@ -27,6 +27,14 @@
         .animate-float {
             animation: float-gentle 3.5s ease-in-out infinite;
         }
+
+        @keyframes drawPulse {
+            0%, 100% { opacity: 0.85; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.04) rotate(-1deg); }
+        }
+        .animate-draw {
+            animation: drawPulse 2.8s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -67,7 +75,7 @@
                     Pilih Template Frame
                 </h2>
                 <p class="text-[#A57878] text-sm mt-1">
-                    Pilih frame favoritmu atau coba filter animasi ikan interaktif sebelum memotret.
+                    Pilih efek ikan berenang, coret-coret langsung di kamera preview, atau desain retro favoritmu.
                 </p>
             </div>
 
@@ -80,7 +88,7 @@
                     🐠 Animated Overlay
                 </button>
                 <button class="px-4 py-2 rounded-full text-xs font-bold bg-white/80 text-[#8C3A49] hover:bg-pink-100/60 border border-pink-200/60 transition">
-                    🎀 Pastel Coquette
+                    🎨 Interactive Doodle
                 </button>
                 <button class="px-4 py-2 rounded-full text-xs font-bold bg-white/80 text-[#8C3A49] hover:bg-pink-100/60 border border-pink-200/60 transition">
                     ✨ Y2K Retro
@@ -93,15 +101,12 @@
 
             <!-- Card 1: FRAME IKAN (Aquarium Floating Fish - Live Animated) -->
             <div class="group bg-white/90 backdrop-blur-sm rounded-3xl p-4 border-2 border-sky-300 shadow-md shadow-sky-200/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-                <!-- Badge Animated -->
                 <span class="absolute top-6 right-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-bold bg-sky-100 text-sky-700 border border-sky-200 flex items-center gap-1 shadow-sm">
                     <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-ping"></span> 🐠 Animated
                 </span>
 
-                <!-- Preview Area (Tema Akuarium Ikan Mas) -->
+                <!-- Preview Area -->
                 <div class="relative w-full aspect-[3/4] bg-gradient-to-b from-sky-100 via-teal-50 to-pink-100 rounded-2xl border border-sky-200/80 p-3.5 flex flex-col items-center justify-between overflow-hidden">
-                    
-                    <!-- Bubble & Fish Accents -->
                     <span class="absolute top-8 left-3 text-sm opacity-60 animate-bounce">🫧</span>
                     <span class="absolute bottom-12 right-4 text-xs opacity-70 animate-pulse">🫧</span>
                     <div class="absolute top-1/3 -right-2 text-2xl animate-float pointer-events-none drop-shadow-md">
@@ -132,47 +137,66 @@
                     <p class="text-[11px] text-[#A57878] mt-0.5">Efek ikan berenang lewat di depan kamera</p>
                     
                     <div class="mt-4">
-                        <a href="{{ route('photobooth.index', ['template' => 'aquarium']) }}" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-400 to-teal-400 text-white text-xs font-bold shadow-md shadow-sky-300/40 hover:opacity-95 flex items-center justify-center gap-1.5 transition-all">
+                        <a href="{{ route('photobooth.index') }}" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-sky-400 to-teal-400 text-white text-xs font-bold shadow-md shadow-sky-300/40 hover:opacity-95 flex items-center justify-center gap-1.5 transition-all">
                             <span>📷</span> Pakai Frame Ikan
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Card 2: FRAME RIBBON COQUETTE & SAKURA -->
-            <div class="group bg-white/85 backdrop-blur-sm rounded-3xl p-4 border border-pink-200 shadow-sm hover:shadow-xl hover:shadow-pink-200/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-                <span class="absolute top-6 right-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-bold bg-pink-50 text-pink-600 border border-pink-200 flex items-center gap-1 shadow-sm">
-                    🎀 Pastel Cute
+            <!-- Card 2: FRAME CORET-CORET (Interactive Doodle Mirror Cam) -->
+            <div class="group bg-white/90 backdrop-blur-sm rounded-3xl p-4 border-2 border-rose-300 shadow-md shadow-rose-200/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                <span class="absolute top-6 right-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 border border-rose-200 flex items-center gap-1 shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span> 🎨 Interactive
                 </span>
 
-                <!-- Preview Area -->
-                <div class="relative w-full aspect-[3/4] bg-gradient-to-b from-[#FFF0F5] to-[#FFE4E1] rounded-2xl border border-pink-200/70 p-3.5 flex flex-col items-center justify-between overflow-hidden">
+                <!-- Preview Area with Doodle Illustrations -->
+                <div class="relative w-full aspect-[3/4] bg-gradient-to-b from-[#FFF5F7] via-[#FFF0F4] to-[#FFE4EC] rounded-2xl border border-rose-200/90 p-3.5 flex flex-col items-center justify-between overflow-hidden">
                     
-                    <span class="absolute top-2 left-2 text-base">🌸</span>
-                    <span class="absolute top-2 right-2 text-base">🎀</span>
-                    <span class="absolute bottom-2 left-2 text-base">🎀</span>
-                    <span class="absolute bottom-2 right-2 text-base">🌸</span>
+                    <!-- Doodle Floating Visuals -->
+                    <span class="absolute top-3 left-3 text-lg -rotate-12 animate-draw">✏️</span>
+                    <span class="absolute top-4 right-14 text-sm text-pink-500 font-extrabold rotate-6">~♥~</span>
+                    <span class="absolute bottom-14 left-4 text-xs font-bold text-amber-500 -rotate-6">★ xoxo</span>
+                    <span class="absolute bottom-12 right-3 text-base animate-bounce">🖍️</span>
 
-                    <!-- 3 Cut Grid Photo -->
+                    <!-- Decorative Hand-drawn SVG doodle lines -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-40" viewBox="0 0 100 100" fill="none" stroke="#EA7C8F" stroke-width="1.8" stroke-linecap="round">
+                        <path d="M 12,22 Q 22,14 32,24 T 52,20" />
+                        <path d="M 68,78 Q 78,88 88,76" />
+                    </svg>
+
+                    <!-- 3 Cut Grid Photo with Doodle Accent Borders -->
                     <div class="w-full flex flex-col items-center gap-2 z-10 my-auto">
-                        <div class="w-24 h-14 bg-white/90 rounded-lg shadow-sm border border-dashed border-rose-300 flex items-center justify-center text-[11px] text-[#8C3A49] font-medium">Foto 1</div>
-                        <div class="w-24 h-14 bg-white/90 rounded-lg shadow-sm border border-dashed border-rose-300 flex items-center justify-center text-[11px] text-[#8C3A49] font-medium">Foto 2</div>
-                        <div class="w-24 h-14 bg-white/90 rounded-lg shadow-sm border border-dashed border-rose-300 flex items-center justify-center text-[11px] text-[#8C3A49] font-medium">Foto 3</div>
+                        <div class="w-24 h-14 bg-white/95 rounded-lg shadow-sm border-2 border-pink-300 flex flex-col items-center justify-center text-[10px] text-rose-500 font-bold relative">
+                            <span>Foto 1</span>
+                            <span class="text-[8px] text-pink-400 font-normal">✎ doodle</span>
+                        </div>
+                        <div class="w-24 h-14 bg-white/95 rounded-lg shadow-sm border-2 border-amber-300 flex flex-col items-center justify-center text-[10px] text-amber-600 font-bold relative">
+                            <span>Foto 2</span>
+                            <span class="text-[8px] text-amber-400 font-normal">✎ doodle</span>
+                        </div>
+                        <div class="w-24 h-14 bg-white/95 rounded-lg shadow-sm border-2 border-sky-300 flex flex-col items-center justify-center text-[10px] text-sky-600 font-bold relative">
+                            <span>Foto 3</span>
+                            <span class="text-[8px] text-sky-400 font-normal">✎ doodle</span>
+                        </div>
                     </div>
 
-                    <div class="z-10 text-[9px] font-bold tracking-widest text-pink-700 uppercase bg-white/60 px-2 py-0.5 rounded-full">
-                        🌸 Coquette Ribbon Strip
+                    <!-- Bottom Watermark Label -->
+                    <div class="z-10 text-[9px] font-bold tracking-widest text-rose-700 uppercase bg-white/80 px-2 py-0.5 rounded-full border border-rose-200/50">
+                        🎨 Doodle Mirror Booth
                     </div>
                 </div>
 
                 <!-- Info & Action -->
                 <div class="mt-4">
-                    <h3 class="font-bold text-[#7A3644] text-sm">Pink Ribbon & Sakura</h3>
-                    <p class="text-[11px] text-[#A57878] mt-0.5">Layout 3 Grid Strip • Soft Coquette Vibe</p>
+                    <h3 class="font-bold text-[#7A3644] text-sm flex items-center gap-1.5">
+                        Doodle Mirror Cam
+                    </h3>
+                    <p class="text-[11px] text-[#A57878] mt-0.5">Bebas gambar & coret-coret di atas kamera</p>
                     
                     <div class="mt-4">
-                        <a href="{{ route('photobooth.index', ['template' => 'coquette']) }}" class="w-full py-2.5 rounded-xl bg-white border border-pink-200 text-[#8C3A49] text-xs font-bold hover:bg-[#FFAAA6] hover:text-white hover:border-[#FFAAA6] flex items-center justify-center transition-all">
-                            Gunakan Frame
+                        <a href="{{ route('photobooth.doodle') }}" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#FFAAA6] via-[#FF8E9E] to-[#EA7C8F] text-white text-xs font-bold shadow-md shadow-rose-300/40 hover:opacity-95 flex items-center justify-center gap-1.5 transition-all">
+                            <span>🎨</span> Coret di Kamera
                         </a>
                     </div>
                 </div>
@@ -192,10 +216,10 @@
 
                     <!-- 4 Box Postcard Grid -->
                     <div class="grid grid-cols-2 gap-1.5 w-full my-auto z-10">
-                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700">1</div>
-                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700">2</div>
-                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700">3</div>
-                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700">4</div>
+                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700 font-medium">1</div>
+                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700 font-medium">2</div>
+                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700 font-medium">3</div>
+                        <div class="h-16 bg-white/90 rounded-lg border border-dashed border-amber-300 flex items-center justify-center text-[10px] text-amber-700 font-medium">4</div>
                     </div>
 
                     <div class="z-10 text-[9px] font-bold tracking-widest text-amber-800 uppercase bg-white/60 px-2 py-0.5 rounded-full">
@@ -209,7 +233,7 @@
                     <p class="text-[11px] text-[#A57878] mt-0.5">Layout 4 Grid Postcard • Warm Nostalgia</p>
                     
                     <div class="mt-4">
-                        <a href="{{ route('photobooth.index', ['template' => 'y2k']) }}" class="w-full py-2.5 rounded-xl bg-white border border-pink-200 text-[#8C3A49] text-xs font-bold hover:bg-[#FFAAA6] hover:text-white hover:border-[#FFAAA6] flex items-center justify-center transition-all">
+                        <a href="{{ route('photobooth.index') }}" class="w-full py-2.5 rounded-xl bg-white border border-pink-200 text-[#8C3A49] text-xs font-bold hover:bg-[#FFAAA6] hover:text-white hover:border-[#FFAAA6] flex items-center justify-center transition-all">
                             Gunakan Frame
                         </a>
                     </div>

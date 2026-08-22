@@ -1,22 +1,43 @@
 <?php
 
-// Forward Vercel requests to normal index.php
+use Illuminate\Http\Request;
+
+define('LARAVEL_START', microtime(true));
+
+// Setup folder temporary storage
+$dirs = [
+    '/tmp/storage',
+    '/tmp/storage/framework',
+    '/tmp/storage/framework/views',
+    '/tmp/storage/framework/cache',
+    '/tmp/storage/framework/cache/data',
+    '/tmp/storage/framework/sessions',
+    '/tmp/storage/logs',
+];
+
+foreach ($dirs as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+}
+
+// Inisialisasi file SQLite kosong di /tmp jika driver database adalah sqlite
+if (!file_exists('/tmp/database.sqlite')) {
+    touch('/tmp/database.sqlite');
+}
+
+// Autoload & Bootstrap Laravel
 require __DIR__ . '/../vendor/autoload.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
-// Set cache and compiled paths to /tmp (writable directory in Vercel)
-putenv('APP_SERVICES_CACHE=/tmp/services.php');
-putenv('APP_PACKAGES_CACHE=/tmp/packages.php');
-putenv('APP_CONFIG_CACHE=/tmp/config.php');
-putenv('APP_ROUTES_CACHE=/tmp/routes.php');
-putenv('APP_EVENTS_CACHE=/tmp/events.php');
-putenv('VIEW_COMPILED_PATH=/tmp/views');
+// Arahkan storage path ke /tmp
+$app->useStoragePath('/tmp/storage');
 
-// Ensure the storage directories exist in /tmp
-if (!is_dir('/tmp/views')) {
-    mkdir('/tmp/views', 0755, true);
-}
-if (!is_dir('/tmp/sessions')) {
-    mkdir('/tmp/sessions', 0755, true);
-}
+// Handle Request
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-require __DIR__ . '/../public/index.php';
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
+
+$kernel->terminate($request, $response);

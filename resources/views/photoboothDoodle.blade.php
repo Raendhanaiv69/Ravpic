@@ -84,7 +84,7 @@
 
         .strip-preview-box {
             width: 100%;
-            height: 490px;
+            height: 460px;
             border-radius: 20px;
             overflow: hidden;
             background-color: #FFF5F7;
@@ -232,7 +232,7 @@
             <!-- Tombol Aksi Kamera -->
             <div class="w-full flex items-center gap-2 mt-4">
                 <button id="startSessionBtn" type="button" class="flex-1 py-3 rounded-2xl bg-gradient-to-r from-[#FFAAA6] via-[#FF8E9E] to-[#EA7C8F] text-white font-bold text-xs md:text-sm shadow-md shadow-rose-300/40 hover:opacity-95 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer">
-                    <span class="text-base"></span> Mulai Foto (3 Kali)
+                    <span class="text-base">📸</span> Mulai Foto (3 Kali)
                 </button>
                 <button type="button" onclick="startCamera()" title="Refresh Kamera" class="w-12 h-11 rounded-2xl bg-pink-50 text-[#8C3A49] border border-pink-200 flex items-center justify-center text-sm hover:bg-pink-100 transition-all cursor-pointer">
                     ⟳
@@ -248,13 +248,13 @@
             </div>
 
             <!-- Pilihan Warna Frame Pastel -->
-            <div class="w-full flex items-center justify-between mb-2.5 px-2 py-1.5 bg-pink-50/60 rounded-2xl border border-pink-100">
+            <div class="w-full flex items-center justify-between mb-2 px-2 py-1 bg-pink-50/60 rounded-2xl border border-pink-100">
                 <span class="text-[10px] font-bold text-[#7A3644] flex items-center gap-1">🎨 Frame:</span>
                 <div class="flex items-center gap-2">
-                    <button type="button" onclick="selectFrameColor('pink')" id="colorBtn-pink" title="Pink Pastel" class="w-5 h-5 rounded-full bg-[#FFD1DC] border-2 border-rose-400 ring-2 ring-rose-300 scale-110 transition-all shadow-sm cursor-pointer"></button>
-                    <button type="button" onclick="selectFrameColor('blue')" id="colorBtn-blue" title="Biru Pastel" class="w-5 h-5 rounded-full bg-[#BAE6FD] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100"></button>
-                    <button type="button" onclick="selectFrameColor('yellow')" id="colorBtn-yellow" title="Kuning Pastel" class="w-5 h-5 rounded-full bg-[#FEF08A] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100"></button>
-                    <button type="button" onclick="selectFrameColor('purple')" id="colorBtn-purple" title="Ungu Pastel" class="w-5 h-5 rounded-full bg-[#E9D5FF] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100"></button>
+                    <button type="button" onclick="selectFrameColor('pink')" id="colorBtn-pink" title="Pink Pastel" class="w-4 h-4 rounded-full bg-[#FFD1DC] border-2 border-rose-400 ring-2 ring-rose-300 scale-110 transition-all shadow-sm cursor-pointer"></button>
+                    <button type="button" onclick="selectFrameColor('blue')" id="colorBtn-blue" title="Biru Pastel" class="w-4 h-4 rounded-full bg-[#BAE6FD] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100"></button>
+                    <button type="button" onclick="selectFrameColor('yellow')" id="colorBtn-yellow" title="Kuning Pastel" class="w-4 h-4 rounded-full bg-[#FEF08A] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100"></button>
+                    <button type="button" onclick="selectFrameColor('purple')" id="colorBtn-purple" title="Ungu Pastel" class="w-4 h-4 rounded-full bg-[#E9D5FF] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100"></button>
                 </div>
             </div>
 
@@ -263,26 +263,44 @@
                 <canvas id="stripCanvas" class="w-full h-full object-contain"></canvas>
             </div>
 
+            <!-- Unduh Foto Satuan 1 per 1 (LENGKAP DENGAN CORETAN DOODLE) -->
+            <div class="w-full mt-2.5 flex items-center justify-between gap-1 bg-rose-50/80 p-1.5 rounded-2xl border border-rose-100">
+                <span class="text-[10px] font-bold text-rose-800 pl-1 flex items-center gap-1">
+                    <span>🎨</span> Unduh Foto 1-1:
+                </span>
+                <div class="flex gap-1">
+                    <button type="button" onclick="downloadSingleDoodlePhoto(0)" id="dlSingleBtn0" disabled title="Unduh Foto 1 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        #1 💾
+                    </button>
+                    <button type="button" onclick="downloadSingleDoodlePhoto(1)" id="dlSingleBtn1" disabled title="Unduh Foto 2 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        #2 💾
+                    </button>
+                    <button type="button" onclick="downloadSingleDoodlePhoto(2)" id="dlSingleBtn2" disabled title="Unduh Foto 3 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                        #3 💾
+                    </button>
+                </div>
+            </div>
+
             <!-- Opsi Tombol Ulang Per Foto (Pose 1, 2, 3) -->
-            <div class="w-full mt-3 flex items-center justify-between gap-1.5 bg-pink-50/70 p-1.5 rounded-2xl border border-pink-100">
+            <div class="w-full mt-1.5 flex items-center justify-between gap-1 bg-pink-50/70 p-1.5 rounded-2xl border border-pink-100">
                 <span class="text-[10px] font-bold text-[#7A3644] pl-1">Ulang Pose:</span>
                 <div class="flex gap-1">
-                    <button type="button" onclick="retakeSinglePose(0)" id="retakeBtn0" disabled class="px-2 py-1 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                    <button type="button" onclick="retakeSinglePose(0)" id="retakeBtn0" disabled class="px-2 py-0.5 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
                         #1 ⟳
                     </button>
-                    <button type="button" onclick="retakeSinglePose(1)" id="retakeBtn1" disabled class="px-2 py-1 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                    <button type="button" onclick="retakeSinglePose(1)" id="retakeBtn1" disabled class="px-2 py-0.5 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
                         #2 ⟳
                     </button>
-                    <button type="button" onclick="retakeSinglePose(2)" id="retakeBtn2" disabled class="px-2 py-1 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+                    <button type="button" onclick="retakeSinglePose(2)" id="retakeBtn2" disabled class="px-2 py-0.5 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
                         #3 ⟳
                     </button>
                 </div>
             </div>
 
-            <!-- Tombol Unduh & Reset -->
-            <div class="w-full flex flex-col gap-2 mt-3">
+            <!-- Tombol Unduh Strip & Reset -->
+            <div class="w-full flex flex-col gap-1.5 mt-2.5">
                 <button id="downloadBtn" type="button" disabled class="w-full py-2.5 rounded-xl bg-gradient-to-r from-[#FFAAA6] to-[#FF8E9E] text-white font-bold text-xs shadow-md shadow-rose-200 opacity-50 cursor-not-allowed transition-all flex items-center justify-center gap-1.5">
-                    <span>💾</span> Unduh Strip Foto (PNG)
+                    <span>💾</span> Unduh Semua (Strip PNG)
                 </button>
                 <button id="resetAllBtn" type="button" onclick="resetBooth()" class="w-full py-1.5 rounded-xl bg-pink-50 text-[#8C3A49] font-bold text-xs hover:bg-pink-100 transition-all">
                     Reset Semua Foto ⟳
@@ -313,7 +331,7 @@
         const eraserBtn = document.getElementById('eraserBtn');
 
         let selectedTimerSeconds = 3;
-        let capturedShots = [null, null, null];
+        let capturedShots = [null, null, null]; // Berisi foto kamera + coretan doodle
         let isSessionRunning = false;
         let currentFacingMode = 'user';
         let currentMediaStream = null;
@@ -361,16 +379,16 @@
         };
 
         const activeClasses = {
-            pink: 'w-5 h-5 rounded-full bg-[#FFD1DC] border-2 border-rose-400 ring-2 ring-rose-300 scale-110 transition-all shadow-sm cursor-pointer',
-            blue: 'w-5 h-5 rounded-full bg-[#BAE6FD] border-2 border-sky-400 ring-2 ring-sky-300 scale-110 transition-all shadow-sm cursor-pointer',
-            yellow: 'w-5 h-5 rounded-full bg-[#FEF08A] border-2 border-amber-400 ring-2 ring-amber-300 scale-110 transition-all shadow-sm cursor-pointer',
-            purple: 'w-5 h-5 rounded-full bg-[#E9D5FF] border-2 border-purple-400 ring-2 ring-purple-300 scale-110 transition-all shadow-sm cursor-pointer'
+            pink: 'w-4 h-4 rounded-full bg-[#FFD1DC] border-2 border-rose-400 ring-2 ring-rose-300 scale-110 transition-all shadow-sm cursor-pointer',
+            blue: 'w-4 h-4 rounded-full bg-[#BAE6FD] border-2 border-sky-400 ring-2 ring-sky-300 scale-110 transition-all shadow-sm cursor-pointer',
+            yellow: 'w-4 h-4 rounded-full bg-[#FEF08A] border-2 border-amber-400 ring-2 ring-amber-300 scale-110 transition-all shadow-sm cursor-pointer',
+            purple: 'w-4 h-4 rounded-full bg-[#E9D5FF] border-2 border-purple-400 ring-2 ring-purple-300 scale-110 transition-all shadow-sm cursor-pointer'
         };
         const inactiveClasses = {
-            pink: 'w-5 h-5 rounded-full bg-[#FFD1DC] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100',
-            blue: 'w-5 h-5 rounded-full bg-[#BAE6FD] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100',
-            yellow: 'w-5 h-5 rounded-full bg-[#FEF08A] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100',
-            purple: 'w-5 h-5 rounded-full bg-[#E9D5FF] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100'
+            pink: 'w-4 h-4 rounded-full bg-[#FFD1DC] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100',
+            blue: 'w-4 h-4 rounded-full bg-[#BAE6FD] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100',
+            yellow: 'w-4 h-4 rounded-full bg-[#FEF08A] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100',
+            purple: 'w-4 h-4 rounded-full bg-[#E9D5FF] border-2 border-transparent hover:scale-105 transition-all shadow-sm cursor-pointer opacity-70 hover:opacity-100'
         };
 
         function selectFrameColor(colorKey) {
@@ -607,7 +625,6 @@
                 const w = doodleCanvas.parentElement.clientWidth || 460;
                 const h = doodleCanvas.parentElement.clientHeight || 460;
                 
-                // Simpan gambar jika sudah ada coretan sebelum resize
                 const temp = dCtx.getImageData(0, 0, doodleCanvas.width, doodleCanvas.height);
                 doodleCanvas.width = w;
                 doodleCanvas.height = h;
@@ -676,11 +693,13 @@
                 tCtx.fillRect(0, 0, size, size);
             }
 
-            // Tempelkan coretan doodle ke atas foto
+            // Tempelkan coretan doodle ke atas foto kamera
             tCtx.drawImage(doodleCanvas, 0, 0, size, size);
             capturedShots[index] = tempCanvas;
 
+            // Aktifkan tombol ulang & unduh per foto
             document.getElementById(`retakeBtn${index}`).disabled = false;
+            document.getElementById(`dlSingleBtn${index}`).disabled = false;
             renderPhotostripLive();
         }
 
@@ -825,6 +844,18 @@
             sCtx.fillText(dateStr, stripW / 2, stripH - 35);
         }
 
+        // Fungsi Download Single Photo Lengkap dengan Doodle (1 Per 1)
+        function downloadSingleDoodlePhoto(index) {
+            const shotCanvas = capturedShots[index];
+            if (!shotCanvas) return;
+
+            const link = document.createElement('a');
+            link.download = `doodle-photo-pose-${index + 1}-${Date.now()}.png`;
+            link.href = shotCanvas.toDataURL('image/png');
+            link.click();
+        }
+
+        // Fungsi Download Full Photostrip
         function downloadStrip() {
             if (!capturedShots.every(s => s !== null)) return;
             const link = document.createElement('a');
@@ -837,6 +868,7 @@
             capturedShots = [null, null, null];
             for (let i = 0; i < 3; i++) {
                 document.getElementById(`retakeBtn${i}`).disabled = true;
+                document.getElementById(`dlSingleBtn${i}`).disabled = true;
             }
             renderPhotostripLive();
             stripStatusBadge.className = "text-[10px] text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full font-bold";

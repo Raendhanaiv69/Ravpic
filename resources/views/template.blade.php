@@ -10,7 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         body {
@@ -138,13 +139,13 @@
                 </div>
             </div>
 
-            <!-- Card 2: FRAME RIBBON COQUETTE & SAKURA (Tema Berbeda) -->
+            <!-- Card 2: FRAME RIBBON COQUETTE & SAKURA -->
             <div class="group bg-white/85 backdrop-blur-sm rounded-3xl p-4 border border-pink-200 shadow-sm hover:shadow-xl hover:shadow-pink-200/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
                 <span class="absolute top-6 right-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-bold bg-pink-50 text-pink-600 border border-pink-200 flex items-center gap-1 shadow-sm">
                     🎀 Pastel Cute
                 </span>
 
-                <!-- Preview Area (Tema Pita & Bunga Sakura) -->
+                <!-- Preview Area -->
                 <div class="relative w-full aspect-[3/4] bg-gradient-to-b from-[#FFF0F5] to-[#FFE4E1] rounded-2xl border border-pink-200/70 p-3.5 flex flex-col items-center justify-between overflow-hidden">
                     
                     <span class="absolute top-2 left-2 text-base">🌸</span>
@@ -177,13 +178,13 @@
                 </div>
             </div>
 
-            <!-- Card 3: FRAME Y2K RETRO STARS (Tema Berbeda) -->
+            <!-- Card 3: FRAME Y2K RETRO STARS -->
             <div class="group bg-white/85 backdrop-blur-sm rounded-3xl p-4 border border-pink-100 shadow-sm hover:shadow-xl hover:shadow-pink-200/50 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
                 <span class="absolute top-6 right-6 z-20 px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 flex items-center gap-1 shadow-sm">
                     ⭐ Y2K Retro
                 </span>
 
-                <!-- Preview Area (Tema 4-Box Postcard Y2K) -->
+                <!-- Preview Area -->
                 <div class="relative w-full aspect-[3/4] bg-gradient-to-br from-[#FFF5DC] via-[#FFEBE1] to-[#FFF0F5] rounded-2xl border border-amber-200/70 p-3.5 flex flex-col items-center justify-between">
                     
                     <span class="absolute top-2 right-2 text-xs">✨</span>

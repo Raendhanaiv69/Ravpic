@@ -270,13 +270,13 @@
                 </span>
                 <div class="flex gap-1">
                     <button type="button" onclick="downloadSingleDoodlePhoto(0)" id="dlSingleBtn0" disabled title="Unduh Foto 1 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        #1 💾
+                        1 💾
                     </button>
                     <button type="button" onclick="downloadSingleDoodlePhoto(1)" id="dlSingleBtn1" disabled title="Unduh Foto 2 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        #2 💾
+                        2 💾
                     </button>
                     <button type="button" onclick="downloadSingleDoodlePhoto(2)" id="dlSingleBtn2" disabled title="Unduh Foto 3 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        #3 💾
+                        3 💾
                     </button>
                 </div>
             </div>
@@ -286,13 +286,13 @@
                 <span class="text-[10px] font-bold text-[#7A3644] pl-1">Ulang Pose:</span>
                 <div class="flex gap-1">
                     <button type="button" onclick="retakeSinglePose(0)" id="retakeBtn0" disabled class="px-2 py-0.5 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        #1 ⟳
+                        1 ⟳
                     </button>
                     <button type="button" onclick="retakeSinglePose(1)" id="retakeBtn1" disabled class="px-2 py-0.5 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        #2 ⟳
+                        2 ⟳
                     </button>
                     <button type="button" onclick="retakeSinglePose(2)" id="retakeBtn2" disabled class="px-2 py-0.5 rounded-lg bg-white border border-pink-200 text-[#8C3A49] text-[10px] font-bold hover:bg-pink-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-                        #3 ⟳
+                        3 ⟳
                     </button>
                 </div>
             </div>

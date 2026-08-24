@@ -6,6 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>mawsnapbooth ✨</title>
 
+    <meta name="google-site-verification" content="KJaWdrAeSYnkjLKbFwfL_SdFW3lh-ImMOcKUjse2PkA" />
+
     <!-- Google Font: Plus Jakarta Sans & Quicksand -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

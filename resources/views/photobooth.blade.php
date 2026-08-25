@@ -145,10 +145,6 @@
                     class="md:hidden px-2.5 py-1 rounded-lg text-xs font-bold bg-pink-50 text-[#8C3A49] border border-pink-200 hover:bg-pink-100 flex items-center gap-1">
                     <span>📷</span> Flip
                 </button>
-                <span id="sessionStatus"
-                    class="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-pink-50 text-[#C25E71] border border-pink-200/60">
-                    ✨ Beauty Filter • 2x2 Coral
-                </span>
             </div>
         </div>
     </nav>
@@ -174,9 +170,7 @@
                 </div>
 
                 <div class="flex items-center gap-1.5">
-                    <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-rose-50 text-rose-600 border border-rose-200">
-                        ✨ Glow Smooth
-                    </span>
+                    
                     <button type="button" onclick="toggleTorchPreference()" id="torchPrefBtn"
                         class="px-2 py-0.5 rounded-lg text-[11px] font-bold bg-pink-50 text-[#8C3A49] border border-pink-200">
                         ⚡ Flash HP: <span id="torchStatusText">Auto</span>
@@ -231,7 +225,6 @@
         <!-- KANAN: Hasil 2x2 Coral Wave Frame -->
         <div class="result-card-desktop">
             <div class="w-full flex justify-between items-center mb-2 px-1">
-                <span class="text-xs font-bold text-[#8C3A49]">✨ Hasil Frame 2x2 Ombak & Karang</span>
                 <span id="stripStatusBadge"
                     class="text-[10px] text-amber-600 bg-amber-50 px-2.5 py-0.5 rounded-full font-bold">Menunggu</span>
             </div>
@@ -261,7 +254,7 @@
             <div
                 class="w-full mt-2.5 flex items-center justify-between gap-1 bg-sky-50/80 p-1.5 rounded-2xl border border-sky-100">
                 <span class="text-[10px] font-bold text-sky-800 pl-1 flex items-center gap-1">
-                    <span>🐠</span> Unduh 1-1:
+                    <span>🐠</span> Unduh 1 frame:
                 </span>
                 <div class="flex gap-1.5">
                     <button type="button" onclick="downloadSinglePhotoWithFish(0)" id="dlSingleBtn0" disabled

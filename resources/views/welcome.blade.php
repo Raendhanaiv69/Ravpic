@@ -51,9 +51,9 @@
             
             <!-- Logo -->
             <a href="{{ route('dashboard') }}" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-pink-300 flex items-center justify-center text-xl shadow-inner border border-white/60 group-hover:scale-105 transition-transform">
+                {{-- <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-200 via-rose-200 to-pink-300 flex items-center justify-center text-xl shadow-inner border border-white/60 group-hover:scale-105 transition-transform">
                     📸
-                </div>
+                </div> --}}
                 <div>
                     <h1 class="text-xl font-bold font-brand tracking-tight bg-gradient-to-r from-[#8C3A49] to-[#D96B82] bg-clip-text text-transparent leading-none">
                         mawsnapbooth ✨
@@ -65,12 +65,10 @@
             <!-- Right Nav Badges & CTA -->
             <div class="flex items-center gap-2.5">
                 <!-- Instagram Link Developer -->
-                <a href="https://instagram.com/raemiv_" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-pink-50 text-[#8C3A49] border border-pink-200 text-xs font-bold hover:bg-pink-100/80 hover:scale-105 transition-all shadow-sm">
-                    <span>📸</span> @raemiv_
-                </a>
+               
 
                 <a href="{{ route('templates.index') }}" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#FFAAA6] via-[#FF8E9E] to-[#EA7C8F] text-white text-xs md:text-sm font-bold shadow-md shadow-rose-300/40 hover:opacity-95 active:scale-95 transition-all flex items-center gap-1.5">
-                    <span>⚡</span> Gas Foto
+                    <span></span> Gow foto
                 </a>
             </div>
 
@@ -122,7 +120,6 @@
                 <h3 class="text-2xl font-extrabold text-[#8C3A49] font-brand tracking-tight flex items-center gap-2">
                     <span>🌟</span> Frame Viral Paling FYP
                 </h3>
-                <p class="text-xs text-[#A57878] mt-0.5">Template paling rame dipakai buat konten estetik & bestie vibes.</p>
             </div>
             <a href="{{ route('templates.index') }}" class="text-xs font-bold text-[#E26D85] hover:underline flex items-center gap-1">
                 Lihat Semua <span>→</span>
@@ -217,14 +214,14 @@
                         <!-- Nama Pengirim (Bebas / Samaran) -->
                         <div>
                             <label class="block text-xs font-bold text-[#7A3644] mb-1.5">
-                                👤 Nama Kamu <span class="font-normal text-[10px] text-[#A57878]">(Bebas / Boleh Ngarang)</span>:
+                                 Nama Kamu <span class="font-normal text-[10px] text-[#A57878]">(Bebas / Boleh Ngarang)</span>:
                             </label>
                             <input type="text" id="fbSenderName" placeholder="Contoh: Secret Bestie / Anonim" class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-xs sm:text-sm font-semibold text-[#6E4B4B] placeholder:text-[#C29E9E] bg-pink-50/40 focus:outline-none focus:ring-2 focus:ring-rose-300 transition-all">
                         </div>
 
                         <!-- Pilihan Kategori -->
                         <div>
-                            <label class="block text-xs font-bold text-[#7A3644] mb-1.5">📌 Kategori Pesan:</label>
+                            <label class="block text-xs font-bold text-[#7A3644] mb-1.5"> Kategori Pesan:</label>
                             <select id="fbCategory" required class="w-full px-4 py-3 rounded-2xl border border-pink-200 text-xs sm:text-sm font-semibold text-[#6E4B4B] bg-pink-50/40 focus:outline-none focus:ring-2 focus:ring-rose-300 transition-all">
                                 <option value="💡 Request Ide Frame Baru">💡 Request Ide Frame Baru</option>
                                 <option value="🐞 Laporan Bug / Error Kamera">🐞 Laporan Bug / Error Kamera</option>
@@ -236,7 +233,7 @@
 
                     <!-- Isi Pesan -->
                     <div>
-                        <label class="block text-xs font-bold text-[#7A3644] mb-1.5">💬 Isi Pesan:</label>
+                        <label class="block text-xs font-bold text-[#7A3644] mb-1.5"> Isi Pesan:</label>
                         <textarea id="fbMessage" rows="4" required placeholder="Tulis sejujur-jujurnya di sini ya..." class="w-full p-4 rounded-2xl border border-pink-200 text-xs sm:text-sm text-[#6E4B4B] placeholder:text-[#C29E9E] bg-pink-50/20 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none transition-all"></textarea>
                     </div>
 
@@ -245,7 +242,7 @@
 
                     <!-- Submit Button -->
                     <button type="submit" id="fbSubmitBtn" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-[#FFAAA6] via-[#FF8E9E] to-[#EA7C8F] text-white font-extrabold text-sm shadow-md shadow-rose-300/40 hover:opacity-95 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer">
-                        <span>🚀</span> Kirim Pesan ke Telegram Developer
+                        <span></span> Kirim Pesan ke Telegram Developer
                     </button>
                 </form>
             </div>

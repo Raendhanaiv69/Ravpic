@@ -134,9 +134,7 @@
                 <button type="button" onclick="switchCameraFacing()" id="flipCamBtn" class="md:hidden px-2.5 py-1 rounded-lg text-xs font-bold bg-pink-50 text-[#8C3A49] border border-pink-200 hover:bg-pink-100 flex items-center gap-1">
                     <span>📷</span> Flip
                 </button>
-                <span id="sessionStatus" class="px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-pink-50 text-[#C25E71] border border-pink-200/60">
-                    🎨 photoboothDoodle 1:1
-                </span>
+                
             </div>
         </div>
     </nav>
@@ -266,7 +264,7 @@
             <!-- Unduh Foto Satuan 1 per 1 (LENGKAP DENGAN CORETAN DOODLE) -->
             <div class="w-full mt-2.5 flex items-center justify-between gap-1 bg-rose-50/80 p-1.5 rounded-2xl border border-rose-100">
                 <span class="text-[10px] font-bold text-rose-800 pl-1 flex items-center gap-1">
-                    <span>🎨</span> Unduh Foto 1-1:
+                    <span>🎨</span> Unduh 1 frame:
                 </span>
                 <div class="flex gap-1">
                     <button type="button" onclick="downloadSingleDoodlePhoto(0)" id="dlSingleBtn0" disabled title="Unduh Foto 1 Doodle" class="px-2 py-0.5 rounded-lg bg-white border border-rose-200 text-rose-800 text-[10px] font-bold hover:bg-rose-100 disabled:opacity-40 disabled:cursor-not-allowed transition-all">
